@@ -1,9 +1,0 @@
-number of jets couted in an event
-pt of jet 1-4 ordered by pt
-6 histoggrams with m_ij -- pairwise combinations
-while plotting number of jets also plot number of muons / elecrrons separately
-sfso
-osof
-all tranvserse/normal energies of jets
-jets 1-6 and 1-4 have 0 values if no jet
-Make ROC curve of tt eff vs zz rej (back)
