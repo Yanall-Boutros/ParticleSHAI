@@ -1,0 +1,9 @@
+FROM python:3.7-alpine
+ADD ./* /data_train/
+WORKDIR = /data_train
+RUN apk update
+RUN apk add bash neovim freetype-dev libpng-dev pkgconfig g++
+RUN pip3 install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.12.0-py3-none-any.whl
+RUN apk add python3-dev 
+RUN pip3 install numpy
+RUN pip3 install numpythia matplotlib pyjet tensorflow 

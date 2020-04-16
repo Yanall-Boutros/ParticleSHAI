@@ -1,0 +1,19 @@
+FROM python:3.7-alpine
+RUN apk update
+RUN apk add g++ 
+RUN apk add pkgconfig
+RUN apk add libpng-dev
+RUN apk add freetype-dev
+RUN apk add neovim
+RUN apk add bash
+RUN pip3 install numpy
+RUN pip3 install matplotlib
+RUN pip3 install pyjet
+RUN pip3 install numpythia
+RUN apk add apline-conf
+RUN setup-xorg-base
+RUN apk add xfce4 lxdm
+RUN apk add xf86-video-qxl
+RUN apk add xf86-input-keyboard xf86-input-mouse xf86-input-evdev
+RUN apk add nomacs
+COPY ./ /2dhists/

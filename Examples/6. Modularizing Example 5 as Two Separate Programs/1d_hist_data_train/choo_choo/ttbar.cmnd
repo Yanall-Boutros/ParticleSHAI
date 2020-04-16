@@ -1,0 +1,7 @@
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 14000.
+Top:gg2ttbar = on
+PhaseSpace:pTHatMin = 400.
+Random:setSeed = on
+Random:seed = 0

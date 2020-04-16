@@ -1,0 +1,5 @@
+Contained in four_vec_prac is a short program that opens a file, reads it
+line by line, determines which lines are ones that contain a vector of 
+information, and calulcates the invariant mass of the sum of those vectors.
+Lastly, it plots a histogram of those events, and saves the output to the 
+current directory.

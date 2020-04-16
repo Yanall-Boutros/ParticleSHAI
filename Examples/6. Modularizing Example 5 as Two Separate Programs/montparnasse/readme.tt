@@ -1,0 +1,4 @@
+The neural networks learning from the two different sets of data each
+achieved ~80% accuracy independently. This project has ecah neural network 
+receive their data and work together to answer if the particle is ttbar
+or not.

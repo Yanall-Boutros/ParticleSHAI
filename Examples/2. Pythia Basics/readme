@@ -1,0 +1,4 @@
+This directory contains example code which generates events with pythia, writes
+the output of those event(s), then reads that write file immediately into an
+array. The invariant masses are calculated from the four vectors produced 
+from the event and plotted in a 1D histogram.

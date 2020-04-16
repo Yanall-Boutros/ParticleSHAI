@@ -1,0 +1,5 @@
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 14000.
+HardQCD:all = on
+HardQCD:nQuarkNew = 2

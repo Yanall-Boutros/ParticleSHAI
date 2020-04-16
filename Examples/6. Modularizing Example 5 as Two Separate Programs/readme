@@ -1,0 +1,7 @@
+2d_hist_data_train is the modularized version of Example 5. Keras implementation
+1d_hist_data_train is similar, but analyzes jet properties instead of the particles
+  consistuting a jet
+
+montparnasse is the collision of the two data_trains above. You may find 
+  'montparnasse train crash' on google of interest if you are curious about the
+  naming convention.

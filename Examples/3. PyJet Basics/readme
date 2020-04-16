@@ -1,0 +1,4 @@
+  Jet_prac makes 1d histograms of the properties of jets in an event. 
+Simulates data using pythia, and clusters particles into jets with
+pyJet. 1D properties are Mass, Eta, Phi, Transverse Momentum, Number
+of Constituents, and the Effective Radius.

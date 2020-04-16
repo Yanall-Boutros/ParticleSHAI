@@ -1,0 +1,2 @@
+Uses Pythia and Pyjet to uncluster particles in jets and makes 2D energy
+weighted histograms from the information.
