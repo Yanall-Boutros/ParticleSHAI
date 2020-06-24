@@ -26,10 +26,10 @@ def is_massless_or_isolated(jet):
     # (nconsts == 1) and has a pdgid equal to that
     # of a photon or a gluon
     if len(jet.constituents_array()) == 1: 
-        if np.abs(jet.info[pid]) == 21 or np.abs(jet.info[pid]) == 22:
+        if np.abs(jet.userinfo[pid]) == 21 or np.abs(jet.userinfo[pid]) == 22:
             return True
         # if a muon is outside of the radius of the jet, discard it
-        if np.abs(jet.info[pid]) == 13 and 2*jet.mass/jet.pt > 1.0:
+        if np.abs(jet.userinfo[pid]) == 13 and 2*jet.mass/jet.pt > 1.0:
             return True
     # Remove Jets with too high an eta
     if np.abs(jet.eta) > 5.0:
