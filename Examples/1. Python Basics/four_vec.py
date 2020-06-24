@@ -8,12 +8,6 @@ import matplotlib.pyplot as plt
 # ----------------------------------------------------------------------
 # Function Definitions
 # ----------------------------------------------------------------------
-def get_event_number(line):
-   if line[0] != 'E': return -1
-   for i in range(len(line)):
-      if line[i].isdigit():
-         return int(line[i:])
-
 def str_to_vec(line):
     out = []
     trimmed = line.split(" ")
