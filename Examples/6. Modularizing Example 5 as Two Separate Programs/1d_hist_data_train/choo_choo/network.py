@@ -55,8 +55,8 @@ def ROC(ans, pred):
             if a: total += 1
             if p > trigger and a: tcount += 1
             elif p > trigger and not a: fcount += 1
-        tp.append(t/total)
-        fp.append(f/total)
+        tp.append(tcount/total)
+        fp.append(fcount/total)
     plt.plot(fp, tp)
     plt.title("ROC Curve for Identifying $T\overline{T}$")
     plt.xlabel("False Positive Rate")
