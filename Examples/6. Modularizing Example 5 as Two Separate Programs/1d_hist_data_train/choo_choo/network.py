@@ -49,14 +49,12 @@ def ROC(ans, pred):
     fp = []
     for trigger in np.linspace(0,1,1000):
         total = 0
-        t = 0
-        f = 0
+        tcount = 0
+        fcount = 0
         for a,p in zip(ans,pred):
             if a: total += 1
-            if p > trigger and a:
-                t += 1
-            elif p > trigger and not a:
-                f += 1
+            if p > trigger and a: tcount += 1
+            elif p > trigger and not a: fcount += 1
         tp.append(t/total)
         fp.append(f/total)
     plt.plot(fp, tp)
