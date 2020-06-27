@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # ====================================================================== 
 # Import Statements
 # ====================================================================== 
@@ -10,14 +12,18 @@ import numpy as np
 from pyjet import cluster
 from matplotlib.colors import ListedColormap
 import tensorflow as tf
+import _thread as thread
+import os
+import sys
 # -----------------------------------------------------------------------
 # Initalize
 # -----------------------------------------------------------------------
-#model                 = tf.keras.models.load_model("first_model") 
+data_mutex            = thread.allocate_lock()
 pid                   = 'pdgid'
-num_events            = 10000 # Number of events to process per parent
-test                  = 1000  # particle. Number of test events to reserve
+num_events            = 1000 # Number of events to process per parent
+test                  = 100  # particle. Number of test events to reserve
 discarded_data        = []   # Archive of any particles discarded
+data_queue            = []
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
@@ -26,7 +32,7 @@ def is_massless_or_isolated(jet):
     # (nconsts == 1) and has a pdgid equal to that
     # of a photon or a gluon
     if len(jet.constituents_array()) == 1: 
-        if np.abs(jet.userinfo[pid]) == 21 or np.abs(jet.userinfo[pid]) == 22:
+        if np.abs(jet.userinfo[pid]) == 22 or np.abs(jet.userinfo[pid]) == 21:
             return True
         # if a muon is outside of the radius of the jet, discard it
         if np.abs(jet.userinfo[pid]) == 13 and 2*jet.mass/jet.pt > 1.0:
@@ -56,6 +62,7 @@ def return_particle_data(jet):
     pt = np.array(pt)
     e = (pt**2 + m**2)**0.5 # This is the transverse energy
     return [eta, phi, e]
+
 def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
     # The main simulation. Takes a cmd_file as input. part_name 
     # is the name of the particle we're simulating decays from.
@@ -89,7 +96,7 @@ def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
                     weights=jets_particle_energy, normed=True,
                     range=[(-5,5),(-1*np.pi,np.pi)],
                     bins=(20,32), cmap='binary')[0]) # We're only taking the
-        plt.close() # Zeroth element, which is the raw data of the 2D Histogram
+        # Zeroth element, which is the raw data of the 2D Histogram
         if make_plots:
             plt.xlabel("$\eta$")
             plt.ylabel("$\phi$")
@@ -97,6 +104,7 @@ def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
             cbar = plt.colorbar()
             cbar.set_label('Tranverse Energy of Each Particle ($GeV$)')
             plt.savefig("hists/Jets_Particles_"+part_name+str(a)+".png")
+        plt.close()
         a += 1
     return np.array(part_tensor)
 
@@ -130,59 +138,81 @@ def shuffle_and_stich(A, B, X, Y):
     T_o = np.array(T_o)
     return T_i, T_o
 
-def pred_comp(pred, real):
-    # Predictions compare takes a predictions array as input,
-    # and compares its results to an expected output (real array)
-    # Returns the percentage of predictions which were accurate.
-    c = 0
-    predictions = np.round(pred)
-    elems = len(predictions)
-    for i in range(elems):
-        if predictions[i] == real[i]:
-            c += 1
-    return c / elems
-# -----------------------------------------------------------------------
-# Main process for generating tensor data
-# -----------------------------------------------------------------------
-# ttbar_tensor has indices of event, followed by eta, followed by phi.
-# The value of the h_tensor is the associated transverse energy.
-ttbar_tensor = pythia_sim('ttbar.cmnd', "TTbar")
-zz_tensor    = pythia_sim('zz.cmnd', 'ZZ')
+def enqueue(carepack):
+  with data_mutex:
+      data_queue.append(carepack)   
 
-ttbar_training     = ttbar_tensor[:test]
-ttbar_training_map = np.ones(test)
-ttbar_tensor       = ttbar_tensor[test:]
+def produce():
+  # function produce produces data to be consumed by function consume.
+  while np.load(open("control", "rb")):
+      # ttbar_tensor has indices of event, followed by eta, followed by phi.
+      # The value of the h_tensor is the associated transverse energy.
+      print("Producer executing Pythia Sim")
+      ttbar_tensor = pythia_sim('ttbar.cmnd', "TTbar")
+      zz_tensor = pythia_sim('zz.cmnd', 'ZZ')
+      print("Producer exits Pythia")
+      
+      ttbar_training = ttbar_tensor[:test]
+      ttbar_training_map = np.ones(test)
+      ttbar_tensor = ttbar_tensor[test:]
+      
+      zz_training = zz_tensor[:test]
+      zz_training_map = np.zeros(test)
+      zz_tensor = zz_tensor[test:]
+      
+      ttbar_mapping = np.ones(num_events - test)
+      zz_mapping = np.zeros(num_events - test)
+      
+      # T_i is the training data / the input tensor
+      # T_o is the expected value (closer to 1 is ttbar, closer to 0 is zz
+      T_i, T_o = shuffle_and_stich(ttbar_tensor, zz_tensor,
+                                   ttbar_mapping, zz_mapping)
+      Test_i, Test_o = shuffle_and_stich(ttbar_training, zz_training,
+                                         ttbar_training_map, zz_training_map)
+      care_package = np.array([T_i, T_o, Test_i, Test_o])
+      print("Producer Enqueing")
+      enqueue(care_package)
+  print("Data Generation Halted")
 
-zz_training     = zz_tensor[:test]
-zz_training_map = np.zeros(test)
-zz_tensor       = zz_tensor[test:]
+def get_care_packages():
+  print("Consumer GET Initializing")
+  care_packages = []
+  while len(data_queue) == 0:
+    pass
+  print("GETter Acquiring Mutex")
+  with data_mutex:
+    while len(data_Queue) != 0:
+      care_packages.append(data_queue.pop(0))
+  print("GETter releasing Mutex")
+  return care_packages
 
-ttbar_mapping = np.ones(num_events - test)
-zz_mapping    = np.zeros(num_events - test)
+def consume():
+  print("Consumer initializing ANN")
+  # ---------------------------------------------------------------------
+  # Check if model exists, if so, load it. Otherwise, make new network
+  # ---------------------------------------------------------------------
+  if os.path.isfile("ff_model"):
+    ffmodel = tf.keras.models.load_model("ffmodel")
+  else:
+    ffmodel = tf.keras.models.Sequential()
+    ffmodel.add(tf.keras.layers.Flatten())
+    ffmodel.add(tf.keras.layers.Dense(64, activation=tf.nn.relu))
+    ffmodel.add(tf.keras.layers.Dense(25, activation=tf.nn.relu))
+    ffmodel.add(tf.keras.layers.Dense(1, activation=tf.nn.sigmoid))
 
-# T_i is the training data / the input tensor
-# T_o is the expected value (closer to 1 is ttbar, closer to 0 is zz
-T_i, T_o       = shuffle_and_stich(ttbar_tensor, zz_tensor,
-                             ttbar_mapping, zz_mapping)
-Test_i, Test_o = shuffle_and_stich(ttbar_training, zz_training,
-                                   ttbar_training_map, zz_training_map)
-# -----------------------------------------------------------------------
-# Build the Feed-Forward neural network
-# -----------------------------------------------------------------------
-ffmodel = tf.keras.models.Sequential()
-ffmodel.add(tf.keras.layers.Flatten())
-ffmodel.add(tf.keras.layers.Dense(64, activation=tf.nn.relu))
-ffmodel.add(tf.keras.layers.Dense(25, activation=tf.nn.relu))
-ffmodel.add(tf.keras.layers.Dense(2, activation=tf.nn.relu))
-ffmodel.add(tf.keras.layers.Dense(1, activation=tf.nn.sigmoid))
-ffmodel.compile(loss='binary_crossentropy',
-                optimizer='Adam',
-                metric=['acurracy'])
-# -----------------------------------------------------------------------
-# Train and Test the Networks
-# -----------------------------------------------------------------------
-ffmodel.fit(T_i, T_o, epochs=100)
-ffmodel.save("first_model")
-predicitons = ffmodel.predict(Test_i)
-print("Neural Network correctly evaluated ", 100*pred_comp(predicitons, Test_o)
-      ,"% of test data")
+  ffmodel.compile(loss='binary_crossentropy',
+                  optimizer='Adam',
+                  metric=['acurracy'])
+  
+  while np.load(open("control", "rb")):
+    print("Consumer grabbing packages")
+    care_pallet = get_care_packages()
+    for care_package in care_pallet:
+        T_i, T_o = care_package[0], care_package[1] 
+        Test_i, Test_o = care_package[2], care_package[3]
+        history = ffmodel.fit(T_i, T_o, epochs=1)
+        ffmodel.save("ff_model")
+        predicitons = ffmodel.predict(Test_i) # vtr stands for
+        vtr = pred_comp(predicitons, Test_o) # validation testing results
+        print("Neural Network correctly evaluated ", 100*vtr ,"% of test data")
+  print("Training Halted")
