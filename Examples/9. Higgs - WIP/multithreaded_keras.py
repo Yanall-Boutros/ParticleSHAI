@@ -92,21 +92,7 @@ def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
                 jets_particle_eta.extend(part_data[0])
                 jets_particle_phi.extend(part_data[1])
                 jets_particle_energy.extend(part_data[2])
-        plt.figure()
-        part_tensor.append(plt.hist2d(jets_particle_eta, jets_particle_phi,
-                    weights=jets_particle_energy, normed=True,
-                    range=[(-5,5),(-1*np.pi,np.pi)],
-                    bins=(20,32), cmap='binary')[0]) # We're only taking the
-        # Zeroth element, which is the raw data of the 2D Histogram
-        if make_plots:
-            plt.xlabel("$\eta$")
-            plt.ylabel("$\phi$")
-            plt.title("Particles from "+part_name)
-            cbar = plt.colorbar()
-            cbar.set_label('Tranverse Energy of Each Particle ($GeV$)')
-            plt.savefig("hists/Jets_Particles_"+part_name+str(a)+".png")
-        plt.close()
-        a += 1
+        part_tensor.append(data)
     return np.array(part_tensor)
 
 def shuffle_and_stich(A, B, X, Y):
