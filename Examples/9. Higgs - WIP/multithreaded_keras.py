@@ -12,7 +12,7 @@ import numpy as np
 from pyjet import cluster
 from matplotlib.colors import ListedColormap
 import tensorflow as tf
-import _thread as thread
+import multithread as thread
 import os
 import sys
 # -----------------------------------------------------------------------
@@ -61,6 +61,7 @@ def return_particle_data(jet):
     m = np.array(m)
     pt = np.array(pt)
     e = (pt**2 + m**2)**0.5 # This is the transverse energy
+    energy_weighted_hist = 
     return [eta, phi, e]
 
 def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
@@ -71,20 +72,20 @@ def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
     # energy.
     pythia = Pythia(cmd_file, random_state=1)
     selection = ((STATUS == 1) & ~HAS_END_VERTEX)
-    unclustered_particles = []
-    a = 0
-    part_tensor = []
+    unclustered_particles    = []
+    a                        = 0
+    part_tensor              = []
     for event in pythia(events=num_events):
-        jets_particle_eta = []
-        jets_particle_phi = []
+        jets_particle_eta    = []
+        jets_particle_phi    = []
         jets_particle_energy = []
-        vectors = event.all(selection)
-        sequence = cluster(vectors, R=1.0, p=-1, ep=True)
-        jets = sequence.inclusive_jets()
+        vectors              = event.all(selection)
+        sequence             = cluster(vectors, R=1.0, p=-1, ep=True)
+        jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
         part_data = []
         for i, jet in enumerate(jets):
-            part_data = return_particle_data(jet)
+            data = (jet.mass, jet.eta, jet.phi, jet.pt)
             if is_massless_or_isolated(jet):
                 discarded_data.append(jet)
             else:
