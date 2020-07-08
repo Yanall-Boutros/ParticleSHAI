@@ -5,7 +5,6 @@ COPY ./Examples/             ./particleSHAI/Examples/
 RUN apt-get update
 RUN apt-get -y install python3-dev bash libpng-dev g++ git  python3 python3-pip python-pip
 RUN python3 -m pip uninstall -y pip &&  apt install python3-pip --reinstall
-RUN pip install --user --upgrade pip
 RUN pip3 install --user --upgrade pip
 RUN python3 -m pip install --user numpy
 RUN python3 -m pip install --user numpythia matplotlib pyjet tensorflow requests pandas scikit-hep scikit-learn uproot scipy pyhepmc-ng 
