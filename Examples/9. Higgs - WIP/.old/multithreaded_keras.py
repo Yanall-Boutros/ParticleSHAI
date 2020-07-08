@@ -12,13 +12,12 @@ import numpy as np
 from pyjet import cluster
 from matplotlib.colors import ListedColormap
 import tensorflow as tf
-import multithread as thread
+from make_the_plots import make_the_plots
 import os
 import sys
 # -----------------------------------------------------------------------
 # Initalize
 # -----------------------------------------------------------------------
-data_mutex            = thread.allocate_lock()
 pid                   = 'pdgid'
 num_events            = 1000 # Number of events to process per parent
 test                  = 100  # particle. Number of test events to reserve
@@ -61,9 +60,55 @@ def return_particle_data(jet):
     m = np.array(m)
     pt = np.array(pt)
     e = (pt**2 + m**2)**0.5 # This is the transverse energy
-    energy_weighted_hist = 
     return [eta, phi, e]
 
+def get_num_bjets(jets):
+    count = 0
+    for jet in jets:
+        if np.abs(jet.userinfo[pid]) == 5: count += 1
+    return count
+
+def hist_jet_vals(part_data):
+    # Column 0 = jet.mass, C1 = jet.eta, C2 = jet.phi, C3 = jet.pt
+    plt.figure()
+    masshist = plt.hist(part_data[:,0])[0]
+    plt.title("Invariant Mass")
+    plt.xlabel("Invariant Mass in GeV")
+    plt.ylabel("Events")
+    plt.savefig("invmass.pdf")
+    plt.close()
+    
+    plt.figure()
+    masshist = plt.hist(part_data[:,1])[0]
+    plt.title("Invariant Mass")
+    plt.xlabel("Invariant Mass in GeV")
+    plt.ylabel("Events")
+    plt.savefig("invmass.pdf")
+    plt.close()
+
+    plt.figure()
+    masshist = plt.hist(part_data[:,2])[0]
+    plt.title("Invariant Mass")
+    plt.xlabel("Invariant Mass in GeV")
+    plt.ylabel("Events")
+    plt.savefig("invmass.pdf")
+    plt.close()
+
+    plt.figure()
+    masshist = plt.hist(part_data[:,3])[0]
+    plt.title("Invariant Mass")
+    plt.xlabel("Invariant Mass in GeV")
+    plt.ylabel("Events")
+    plt.savefig("invmass.pdf")
+    plt.close()
+
+    plt.figure()
+    masshist = plt.hist(part_data[:,4])[0]
+    plt.title("Invariant Mass")
+    plt.xlabel("Invariant Mass in GeV")
+    plt.ylabel("Events")
+    plt.savefig("invmass.pdf")
+    plt.close()
 def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
     # The main simulation. Takes a cmd_file as input. part_name 
     # is the name of the particle we're simulating decays from.
@@ -84,15 +129,17 @@ def pythia_sim(cmd_file, part_name="unnamed", make_plots=False):
         jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
         part_data = []
+        num_b_jets = 0
         for i, jet in enumerate(jets):
-            data = (jet.mass, jet.eta, jet.phi, jet.pt)
-            if is_massless_or_isolated(jet):
-                discarded_data.append(jet)
-            else:
-                jets_particle_eta.extend(part_data[0])
-                jets_particle_phi.extend(part_data[1])
-                jets_particle_energy.extend(part_data[2])
-        part_tensor.append(data)
+            if     np.abs(jet.userinfo[pid]) == 5:   num_b_jets += 1
+            data = np.array((jet.mass, jet.eta, jet.phi, jet.pt))
+            if     is_massless_or_isolated(jet): discarded_data.append(jet)
+            else:  part_data.extend(data)
+        # Calculate total number of b and non-b jets in the event
+        # Histogram the particle data
+        part_data = np.array(part_data)
+        hist_array = hist_jet_vals(part_data) # is y-axis jet num or event num
+
     return np.array(part_tensor)
 
 def shuffle_and_stich(A, B, X, Y):

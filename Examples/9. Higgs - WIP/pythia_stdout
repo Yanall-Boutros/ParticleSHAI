@@ -1,0 +1,1887 @@
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in MultipartonInteractions::pTnext: weight above unity  
+ PYTHIA Warning in SpaceShower::pT2nextQCD: small daughter PDF  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                    |                                   |                        |
+ | sum                                                |       19300       1000       1000 |   1.709e-09  2.752e-11 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      1   Warning in MultipartonInteractions::pTnext: weight above unity                                         | 
+ |      2   Warning in SpaceShower::pT2nextQCD: small daughter PDF                                                 | 
+ |      5   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |   1.332e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:ZZ)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Error in StringFragmentation::fragment: stuck in joining  
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again  
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f f' -> H0 f f'(Z0 Z0 fusion) (SM)             906 |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                    |                                   |                        |
+ | sum                                                |       22191       1000       1000 |   6.261e-10  9.660e-12 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      2   Error in StringFragmentation::fragment: stuck in joining                                               | 
+ |      8   Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame                | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | f_1 f_2 -> H0 f_3 f_4 (W+ W- fusion) (SM)      907 |   3.287e-08 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | HiggsSM:ff2Hff(t:WW)                          |                       on |          off                         | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | Init:showMultipartonInteractions              |                      off |           on                         | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | Random:seed                                   |                        1 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+ PYTHIA Warning in StringFragmentation::fragmentToJunction: bad convergence junction rest frame  

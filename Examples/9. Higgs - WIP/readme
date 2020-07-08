@@ -1,0 +1,31 @@
+##################################################################################
+Description of files and their contents
+##################################################################################
+control            - control is a file which encodes a numpy value of 1 or 0. if
+                     the value of control is 1, training is permitted and the 
+                     python programs will continue to generate data and train off
+                     that data until control is set to 0.
+
+halt_training.py   - a simply python file that writes a value of 0 to
+                     the control file
+
+permit_training.py - a similar python file to halt_traininy.py, which
+                     sets a value of 1 to the control file
+
+status.py          - when executed, status.py will print to stdout (i.e you)
+                     the current value stored in the control file
+
+data.py            - if control is set to 1, data.py will generate packages of
+                     particle simulation data for network.py to train from
+
+network.py         - if control is set to 1, network.py will wait for carepackages
+                     to be generated, load the data, train the networks, then repeat
+                     until control is set to 0
+
+zz.cmnd            - cmnd file containing parameter configurations to simulate events
+                     in a particle collider which result in zz bosons being generated
+                     as the parent particle in the decay processes
+
+ttbar.cmnd         - cmnd file containg parameter configurations to simulate events
+                     in a particle collider which result in top anti top quark pairs
+                     to be generated as parent particles in the collider
