@@ -15,6 +15,7 @@ import os.path
 # Initalize
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
+bjet_id               = 5
 num_events            = 1000 # Number of events to process per parent
 test                  = 100  # particle. Number of test events to reserve
 discarded_data        = []   # Archive of any particles discarded
@@ -39,24 +40,15 @@ def is_massless_or_isolated(jet):
         return True
     return False
 
-def return_particle_data(jet):
-    # return the array containing all the eta, phi, and energies of the
-    # particles in a jets constituent array
-    eta         = [] # Eta and phi are coordinates, similar to cylindrical
-    phi         = [] # coordinates. But is more like the coordinates are  
-    m           = [] # Wrapepd around the inside of the cyilnder. Phi is
-    pt          = [] # the azimuthal. Eta is the psuedo-rapidity. m is 
-    has_eta_phi = jet.constituents_array() # the mass. and pt is the 
-    for i in range(len(has_eta_phi)):      # Transverse momentum (momentum  
-        pt.append(has_eta_phi[i][0])       # in the direction of travel.
-        eta.append(has_eta_phi[i][1])
-        phi.append(has_eta_phi[i][2])
-        m.append(has_eta_phi[i][3])
-    m = np.array(m)
-    pt = np.array(pt)
-    e = (pt**2 + m**2)**0.5 # This is the transverse energy
-    return [eta, phi, e]
-def pythia_sim(cmd_file, part_name="", make_the_plots=False):
+def count_bjets(jets):
+    count = 0
+    for jet in jets:
+        if np.abs(jet.userinfo[pid]) == 5:
+            count += 1
+    return count
+
+
+def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
     # is the name of the particle we're simulating decays from.
     # Only necessary for titling graphs.
@@ -67,29 +59,31 @@ def pythia_sim(cmd_file, part_name="", make_the_plots=False):
     unclustered_particles = []
     debug_data        = [] # Deprecated but costs 1 operation per function call so negligble
     discarded_data    = [] # For analyzing what gets thrown out from function is_massless_or_isolated
-    sj_data_per_event = [] # sub jet data indexed into each event
-
+    jet_data_per_event = [] # sub jet data indexed into each event
+    num_b_jets_per_event = []
     for event in pythia(events=num_events):
-        lead_jet_invalid  = False
-        sub_jet_data      = [] # There are multiple jets in each event
-        vectors           = event.all(selection)
-        sequence          = cluster(vectors, R=0.4, p=-1, ep=True) # Note to self: R might need to be changed to 1
-        jets              = sequence.inclusive_jets()
+        lead_jet_invalid     = False
+        jet_data             = [] # There are multiple jets in each event
+        vectors              = event.all(selection)
+        sequence             = cluster(vectors, R=0.4, p=-1, ep=True) # Note to self: R might need to be changed to 1
+        jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
-
+        num_b_jets  = count_bjets(jets)
         for i, jet in enumerate(jets):
-            data = (
-                    jet.mass, jet.eta, jet.phi, jet.pt
-            )
+            data    = [
+                       jet.mass, jet.eta, jet.phi, jet.pt
+            ]
             if is_massless_or_isolated(jet):
                 discarded_data.append(jet)
                 if i == 0: lead_jet_invalid = True 
             if i < 3:
-                sub_jet_data.append(data)
+                jet_data.append(data)
         if not lead_jet_invalid:
-            sj_data_per_event.append(np.array(sub_jet_data))
-    sj_data_per_event = np.array(sj_data_per_event)
-    return sj_data_per_event
+            num_b_jets_per_event.append(num_b_jets)
+            jet_data_per_event.append(np.array(jet_data))
+    num_b_jets_per_event = np.array(num_b_jets_per_event)
+    jet_data_per_event = np.array(jet_data_per_event)
+    return jet_data_per_event, num_b_jets_per_event
 
 def shuffle_and_stich(A, B, X, Y):
     # A and B are both tensors which map to X and Y respectively
@@ -133,15 +127,12 @@ def ship(carepack):
         while os.path.isfile(base_name+str(i)):
             i += 1
     np.save(open((base_name+str(i)), "wb"), carepack)  
-# -----------------------------------------------------------------------
-# Main process for generating tensor data
-# -----------------------------------------------------------------------
-while np.load(open("control", "rb")):
-    # ttbar_tensor has indices of event, followed by eta, followed by phi.
-    # The value of the h_tensor is the associated transverse energy.
-    ttbar_data = pythia_sim('higgsww.cmnd', "higgsWW", True)
-    zz_data = pythia_sim('higgszz.cmnd', 'higgsZZ')
-    
+
+def structure_data_into_care_package(particle_data_list):
+    # Eventually, this will be dynamic. For now, ttbar and zz are 
+    # statically assigned
+    ttbar_data = particle_data_list[0]
+    zz_data    = particle_data_list[1]
     ttbar_training = ttbar_data[:test] # Set the training data to be everything up to the test index
     ttbar_training_map = np.ones(test) # All of those are definitely ttbar so they get a value of 1
     ttbar_data = ttbar_data[test:]     # Let's reassign the data to be the rest of the values not in training
@@ -160,5 +151,18 @@ while np.load(open("control", "rb")):
     Test_i, Test_o = shuffle_and_stich(ttbar_training, zz_training,
                                        ttbar_training_map, zz_training_map)
     care_package = np.array([T_i, T_o, Test_i, Test_o], dtype=object)
+    return care_package
+def make_plots(data_pak):
+    pass
+# -----------------------------------------------------------------------
+# Main process for generating tensor data
+# -----------------------------------------------------------------------
+while np.load(open("control", "rb")):
+    # ttbar_tensor has indices of event, followed by eta, followed by phi.
+    # The value of the h_tensor is the associated transverse energy.
+    higgs_ww_data    = pythia_sim('higgsww.cmnd', "higgsWW")
+    higgs_zz_data    = pythia_sim('higgszz.cmnd', 'higgsZZ')
+    make_plots(higgs_ww_data)
+    care_package  = structure_data_into_care_package([ttbar_data, zz_data])
     ship(care_package)
 print("Data Generation Halted")
