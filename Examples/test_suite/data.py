@@ -12,7 +12,19 @@ from pyjet import cluster
 # Initalize
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
-num_events            = 1000 # Number of events to process per parent
+num_events            = 10000
+titles = [
+            'Number of Jets with NoneType jet.userinfo',
+            'Number of Jets in the event',
+            'Perentage of NoneType jets in an event',
+            'Aggregate histogram of SomeType jet.userinfo["pdgid"]'
+          ]
+xlabels = [
+            "Number of NoneType Jets",
+            "Total Jets",
+            "Percentages",
+            "Pdgid"
+        ]
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
@@ -47,14 +59,51 @@ def NoneType_statistics(jets, debug_data):
                 hist_pids[label] = 1
             else:
                 hist_pids[label] += 1
-    data = NoneTypes_in_event(num_nonetypes, len(jets),
-        num_nonetypes/len(jets), hist_pids)
+    data = NoneTypes_in_event(
+            num_nonetypes, len(jets),
+            num_nonetypes/len(jets), hist_pids
+           )
     debug_data.append(data)
     return ("Number of jet.userinfo NoneTypes: " + str(num_nonetypes) +
             "\nTotal Number of Jets: " + str(len(jets)) +
             "\nPercent NoneType: " + str(num_nonetypes/len(jets)) +
             "\nPID count: " + hist_pids.__str__() + "\n" +
             "-"*72)
+
+def aggregate_pdgid_counts_across_events(debug_data):
+    out_dict = {}
+    for event in debug_data:
+        for key in event.hist_pids:
+            if out_dict.get(key) is None: out_dict[key] = 1
+            else: out_dict[key] += 1
+    return out_dict
+
+def extract_data(debug_data):
+    event_nones, event_ttal, event_percents, event_hist_pids = [], [], [], []
+    for event in debug_data:
+        event_nones.append(event.num_none)
+        event_ttal.append(event.num_total)
+        event_percents.append(event.percents)
+    event_hist_pids = aggregate_pdgid_counts_across_events(debug_data)
+    return [event_nones, event_ttal, event_percents, event_hist_pids]
+
+def hist_debug_data(debug_data):
+    event_stats = extract_data(debug_data)
+    for i, event_stat in enumerate(event_stats):
+        plt.figure()
+        plt.title(titles[i])
+        plt.xlabel(xlabels[i])
+        plt.ylabel("Counts per event")
+        if i == 3:
+            x = list(event_stat.keys())
+            y = list(event_stat.values())
+            plt.bar(x, y)
+            plt.savefig(('hists/'+xlabels[i]+'.pdf')) # pdf needed because png can't
+            # render extremely thins bars
+        else:
+            plt.hist(event_stat)
+            plt.savefig(('hists/'+xlabels[i]+'.png'))
+        plt.close()
 
 def pythia_sim(cmd_file):
     # The main simulation. Takes a cmd_file as input. 
@@ -66,16 +115,13 @@ def pythia_sim(cmd_file):
         sequence              = cluster(vectors, R=0.4, p=-1, ep=True) 
         jets                  = sequence.inclusive_jets()
         print(NoneType_statistics(jets, debug_data))
-        # 
-        # Vestigial code that I didn't delete because at first I thought
-        # the context might be useful, I do not believe that to still be
-        # the case.
-        #
-        unclustered_particles.append(sequence.unclustered_particles())
-        for i, jet in enumerate(jets):
-            if is_massless_or_isolated(jet, i): pass
 # -----------------------------------------------------------------------
 # Main process for generating tensor data
-debug_data = []
+# -----------------------------------------------------------------------
+print(np.__version__)
+print
+debug_data = []             # Global Variable used locally in pythia_sim
 pythia_sim('ff2hfftww.cmnd')
-
+hist_debug_data(debug_data) # Remove this line if you don't want debug 
+# statistics to be saved as .png/.pdf
+# Some bjets were supposed to be created (pdgid = 5), but none are reported
