@@ -119,7 +119,6 @@ def pythia_sim(cmd_file):
 # Main process for generating tensor data
 # -----------------------------------------------------------------------
 print(np.__version__)
-print
 debug_data = []             # Global Variable used locally in pythia_sim
 pythia_sim('ff2hfftww.cmnd')
 hist_debug_data(debug_data) # Remove this line if you don't want debug 
