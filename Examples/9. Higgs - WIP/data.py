@@ -19,6 +19,36 @@ bjet_id               = 5
 num_events            = 1000 # Number of events to process per parent
 test                  = 100  # particle. Number of test events to reserve
 discarded_data        = []   # Archive of any particles discarded
+titles = [
+            "Histogram of bjet eta",
+            "Histogram of bjet phi",
+            "Histogram of bjet mass",
+            "Histogram of bjet pt",
+            "Histogram of nonbjet eta",
+            "Histogram of nonbjet phi",
+            "Histogram of nonbjet mass",
+            "Histogram of nonbjet pt",
+            "Histogram of number of b jets",
+        ]
+class event_hists(object):
+    # A data structure which contains the Eta, Phi, pt, and invariant
+    # mass of the jet, maintaing those two sets for jets of 
+    # pdgid = 5 AKA  'bjet', and non bjets.
+    def __init__(self):
+        self.hists = {}
+        for i, title in enumerate(titles): self.hists[i] = []
+
+    def update(self, pdgid, eta, mass, phi, pt):
+        bjetid = 5
+        update_vals = [eta, mass, phi, pt]
+        if pdgid == bjetid:
+            for i, title in enumerate(titles[:4]): 
+                self.hists[i].append(update_vals.pop(0))
+        else:
+            for i, title in enumerate(titles[4:-1]):
+                self.hists[i].append(update_vals.pop(0))
+        self.hists[len(titles) - 1].append(len(self.hists[0]))
+                
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
@@ -27,8 +57,6 @@ def is_massless_or_isolated(jet):
     # (nconsts == 1) and has a pdgid equal to that
     # of a photon or a gluon
     if len(jet.constituents_array()) == 1: 
-        # Count number of bjets
-        if np.abs(jet.userinfo[pid]) == 5: num_b_jets += 1
         if np.abs(jet.userinfo[pid]) == 21 or np.abs(jet.userinfo[pid]) == 22:
             return True
         # if a muon is outside of the radius of the jet, discard it
@@ -66,19 +94,26 @@ def pythia_sim(cmd_file, part_name=""):
         lead_jet_invalid     = False
         jet_data             = [] # There are multiple jets in each event
         vectors              = event.all(selection)
-        sequence             = cluster(vectors, R=0.4, p=-1, ep=True) # Note to self: R might need to be changed to 1
+        sequence             = cluster(vectors, R=0.4, p=-1, ep=True) #nts:Rval update
         jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
         num_b_jets  = 0
+        event_data_package = event_hists()
         for i, jet in enumerate(jets):
-            data    = [
-                       jet.mass, jet.eta, jet.phi, jet.pt
-            ]
+            if jet.userinfo is not None:
+                data = [
+                           np.abs(jet.userinfo[pid]), jet.eta,
+                           jet.phi,jet.mass, jet.pt
+                        ]
+            else:
+                data = [
+                            -1, jet.eta, jet.phi, jet.mass, jet.pt
+                        ]
             if is_massless_or_isolated(jet):
                 discarded_data.append(jet)
                 if i == 0: lead_jet_invalid = True 
-            if i < 3:
-                jet_data.append(data)
+            else:
+                event_data_package.update(*data)
         lead_jet_valid = not lead_jet_invalid
         if lead_jet_valid:
             num_b_jets_per_event.append(num_b_jets)
@@ -144,9 +179,10 @@ def structure_data_into_care_package(particle_data_list):
     zz_training = zz_data[:test]       # Do the same for zz_data
     zz_training_map = np.zeros(test)   # Except these get a value of 0
     zz_data = zz_data[test:] 
-    
-    ttbar_mapping = np.ones(num_events - test) # The NN will map ttbar information to the value it maps to
-    zz_mapping = np.zeros(num_events - test)   # That value is 0 for zz and 1 for ttbar
+    # The NN will map ttbar information to the value it maps to
+    ttbar_mapping = np.ones(num_events - test) 
+    # That value is 0 for zz and 1 for ttbar
+    zz_mapping = np.zeros(num_events - test)   
     
     # T_i is the training data / the input tensor
     # T_o is the expected value (closer to 1 is ttbar, closer to 0 is zz
@@ -156,10 +192,11 @@ def structure_data_into_care_package(particle_data_list):
                                        ttbar_training_map, zz_training_map)
     care_package = np.array([T_i, T_o, Test_i, Test_o], dtype=object)
     return care_package
+
 def make_plots(data_pak):
     pass
 # -----------------------------------------------------------------------
-# Main process for generating data
+# Main process 
 # -----------------------------------------------------------------------
 while np.load(open("control", "rb")):
     # ttbar_tensor has indices of event, followed by eta, followed by phi.
