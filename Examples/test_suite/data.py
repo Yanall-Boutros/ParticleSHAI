@@ -35,19 +35,6 @@ class NoneTypes_in_event():
         self.percents = pcnts
         self.hist_pids = hpids
 
-def is_massless_or_isolated(jet, i):
-    # Returns true if a jet is only constituated of one particle
-    # (nconsts == 1) and has a pdgid equal to that
-    # of a photon or a gluon
-    noneflag = False
-    if jet.userinfo is None:
-        noneflag = True
-    if len(jet.constituents_array()) == 1: 
-        # Count number of bjets
-        if noneflag and jet.userinfo is not None:
-            print("what, why?")
-    return False
-
 def NoneType_statistics(jets, debug_data):
     num_nonetypes = 0
     hist_pids = {}
