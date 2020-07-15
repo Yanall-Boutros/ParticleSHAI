@@ -94,16 +94,16 @@ def hist_debug_data(debug_data):
 
 def pythia_sim(cmd_file):
     # The main simulation. Takes a cmd_file as input. 
-    pythia                   = Pythia(cmd_file, random_state=1)
-    selection                = ((STATUS == 1) & ~HAS_END_VERTEX)
-    unclustered_particles    = []
+    pythia                    = Pythia(cmd_file, random_state=1)
+    selection                 = ((STATUS == 1) & ~HAS_END_VERTEX)
+    unclustered_particles     = []
     for event in pythia(events=num_events):
         vectors               = event.all(selection)
         sequence              = cluster(vectors, R=0.4, p=-1, ep=True) 
         jets                  = sequence.inclusive_jets()
         print(NoneType_statistics(jets, debug_data))
 # -----------------------------------------------------------------------
-# Main process for generating tensor data
+# Main process 
 # -----------------------------------------------------------------------
 print(np.__version__)
 debug_data = []             # Global Variable used locally in pythia_sim

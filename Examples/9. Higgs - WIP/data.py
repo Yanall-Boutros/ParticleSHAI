@@ -27,6 +27,8 @@ def is_massless_or_isolated(jet):
     # (nconsts == 1) and has a pdgid equal to that
     # of a photon or a gluon
     if len(jet.constituents_array()) == 1: 
+        # Count number of bjets
+        if np.abs(jet.userinfo[pid]) == 5: num_b_jets += 1
         if np.abs(jet.userinfo[pid]) == 21 or np.abs(jet.userinfo[pid]) == 22:
             return True
         # if a muon is outside of the radius of the jet, discard it
@@ -46,7 +48,6 @@ def count_bjets(jets):
         if np.abs(jet.userinfo[pid]) == 5:
             count += 1
     return count
-
 
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
@@ -68,7 +69,7 @@ def pythia_sim(cmd_file, part_name=""):
         sequence             = cluster(vectors, R=0.4, p=-1, ep=True) # Note to self: R might need to be changed to 1
         jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
-        num_b_jets  = count_bjets(jets)
+        num_b_jets  = 0
         for i, jet in enumerate(jets):
             data    = [
                        jet.mass, jet.eta, jet.phi, jet.pt
@@ -78,7 +79,8 @@ def pythia_sim(cmd_file, part_name=""):
                 if i == 0: lead_jet_invalid = True 
             if i < 3:
                 jet_data.append(data)
-        if not lead_jet_invalid:
+        lead_jet_valid = not lead_jet_invalid
+        if lead_jet_valid:
             num_b_jets_per_event.append(num_b_jets)
             jet_data_per_event.append(np.array(jet_data))
     num_b_jets_per_event = np.array(num_b_jets_per_event)
@@ -133,10 +135,12 @@ def structure_data_into_care_package(particle_data_list):
     # statically assigned
     ttbar_data = particle_data_list[0]
     zz_data    = particle_data_list[1]
-    ttbar_training = ttbar_data[:test] # Set the training data to be everything up to the test index
-    ttbar_training_map = np.ones(test) # All of those are definitely ttbar so they get a value of 1
-    ttbar_data = ttbar_data[test:]     # Let's reassign the data to be the rest of the values not in training
-    
+    ttbar_training = ttbar_data[:test] # Set the training data to be everything
+                                       # up to the test index
+    ttbar_training_map = np.ones(test) # All of those are definitely ttbar so
+                                       # they get a value of 1
+    ttbar_data = ttbar_data[test:]     # Let's reassign the data to be the rest of
+                                       # the values not in training
     zz_training = zz_data[:test]       # Do the same for zz_data
     zz_training_map = np.zeros(test)   # Except these get a value of 0
     zz_data = zz_data[test:] 
@@ -155,7 +159,7 @@ def structure_data_into_care_package(particle_data_list):
 def make_plots(data_pak):
     pass
 # -----------------------------------------------------------------------
-# Main process for generating tensor data
+# Main process for generating data
 # -----------------------------------------------------------------------
 while np.load(open("control", "rb")):
     # ttbar_tensor has indices of event, followed by eta, followed by phi.
