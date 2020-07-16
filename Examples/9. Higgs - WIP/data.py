@@ -52,74 +52,27 @@ class event_hists(object):
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
-def is_massless_or_isolated(jet):
-    # Returns true if a jet is only constituated of one particle
-    # (nconsts == 1) and has a pdgid equal to that
-    # of a photon or a gluon
-    if len(jet.constituents_array()) == 1: 
-        if np.abs(jet.userinfo[pid]) == 21 or np.abs(jet.userinfo[pid]) == 22:
-            return True
-        # if a muon is outside of the radius of the jet, discard it
-        if np.abs(jet.userinfo[pid]) == 13 and 2*jet.mass/jet.pt > 1.0:
-            return True
-    # Remove Jets with too high an eta
-    if np.abs(jet.eta) > 5.0:
-        return True
-    # Remove any jets less than an arbitrary near zero mass
-    if jet.mass < 0.4:
-        return True
-    return False
-
-def count_bjets(jets):
-    count = 0
-    for jet in jets:
-        if np.abs(jet.userinfo[pid]) == 5:
-            count += 1
-    return count
-
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
     # is the name of the particle we're simulating decays from.
     # Only necessary for titling graphs.
     # Returns an array of 2D histograms, mapping eta, phi, with transverse
     # energy.
-    pythia = Pythia(cmd_file, random_state=1)
-    selection = ((STATUS == 1) & ~HAS_END_VERTEX)
-    unclustered_particles = []
-    debug_data        = [] # Deprecated but costs 1 operation per function call so negligble
-    discarded_data    = [] # For analyzing what gets thrown out from function is_massless_or_isolated
-    jet_data_per_event = [] # sub jet data indexed into each event
-    num_b_jets_per_event = []
+    pythia      = Pythia(cmd_file, random_state=1)
+    selection   = ((STATUS == 1) & ~HAS_END_VERTEX)
+    events_data = []
     for event in pythia(events=num_events):
-        lead_jet_invalid     = False
-        jet_data             = [] # There are multiple jets in each event
         vectors              = event.all(selection)
         sequence             = cluster(vectors, R=0.4, p=-1, ep=True) #nts:Rval update
         jets                 = sequence.inclusive_jets()
         unclustered_particles.append(sequence.unclustered_particles())
-        num_b_jets  = 0
         event_data_package = event_hists()
-        for i, jet in enumerate(jets):
-            if jet.userinfo is not None:
-                data = [
-                           np.abs(jet.userinfo[pid]), jet.eta,
-                           jet.phi,jet.mass, jet.pt
-                        ]
-            else:
-                data = [
-                            -1, jet.eta, jet.phi, jet.mass, jet.pt
-                        ]
-            if is_massless_or_isolated(jet):
-                discarded_data.append(jet)
-                if i == 0: lead_jet_invalid = True 
-            else:
-                event_data_package.update(*data)
-        lead_jet_valid = not lead_jet_invalid
-        if lead_jet_valid:
-            num_b_jets_per_event.append(num_b_jets)
-            jet_data_per_event.append(np.array(jet_data))
-    num_b_jets_per_event = np.array(num_b_jets_per_event)
-    jet_data_per_event = np.array(jet_data_per_event)
+        for jet in jets:
+            if jet.userinfo is not None: data = [np.abs(jet.userinfo[pid]), jet.eta,
+                           jet.phi,jet.mass, jet.pt]
+            else: data = [-1, jet.eta, jet.phi, jet.mass, jet.pt] # Error until pdgid
+            # bug fixed
+            event_data_package.update(*data)
     return jet_data_per_event, num_b_jets_per_event
 
 def shuffle_and_stich(A, B, X, Y):
