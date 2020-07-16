@@ -68,12 +68,14 @@ def pythia_sim(cmd_file, part_name=""):
         unclustered_particles.append(sequence.unclustered_particles())
         event_data_package = event_hists()
         for jet in jets:
-            if jet.userinfo is not None: data = [np.abs(jet.userinfo[pid]), jet.eta,
-                           jet.phi,jet.mass, jet.pt]
-            else: data = [-1, jet.eta, jet.phi, jet.mass, jet.pt] # Error until pdgid
-            # bug fixed
-            event_data_package.update(*data)
-    return jet_data_per_event, num_b_jets_per_event
+            if jet.userinfo is not None: event_data_package.update (
+                    jet.userinfo[pid], jet.eta, jet.phi, jet.mass, jet.pt]
+            )
+            else: event_data_package.update (
+                    -1, jet.eta, jet.phi, jet.mass, jet.pt
+            )# Error until pdgid bug is fixed
+        events_data.append(event_data_package)
+    return events_data
 
 def shuffle_and_stich(A, B, X, Y):
     # A and B are both tensors which map to X and Y respectively
