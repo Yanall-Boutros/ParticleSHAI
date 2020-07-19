@@ -16,9 +16,9 @@ import os.path
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
 bjet_id               = 5
-num_events            = 1000 # Number of events to process per parent
-test                  = 100  # particle. Number of test events to reserve
-discarded_data        = []   # Archive of any particles discarded
+num_events            = 10 # Number of events to process per parent
+test                  = 1  # particle. Number of test events to reserve
+discarded_data        = [] # Archive of any particles discarded
 titles = [
             "Histogram of bjet eta",
             "Histogram of bjet phi",
@@ -29,6 +29,29 @@ titles = [
             "Histogram of nonbjet mass",
             "Histogram of nonbjet pt",
             "Histogram of number of b jets",
+        ]
+xlabels = [
+            "Eta ($\eta$)",
+            "Phi ($\phi$)",
+            "Mass ($GeV$)",
+            "Pt  ($jet.pt$)",
+            "Eta ($\eta$)",
+            "Phi ($\phi$)",
+            "Mass ($GeV$)",
+            "Pt  ($jet.pt$)",
+            "Number of b jets"
+        ]
+ylabel = "Counts in Event"
+n_bins = [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
         ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
@@ -45,9 +68,22 @@ class event_hists(object):
             for i, title in enumerate(titles[:4]): 
                 self.hists[i].append(update_vals.pop(0))
         else:
+            dev = 4
             for i, title in enumerate(titles[4:-1]):
-                self.hists[i].append(update_vals.pop(0))
+                self.hists[i+dev].append(update_vals.pop(0))
         self.hists[len(titles) - 1].append(len(self.hists[0]))
+        
+    def save_1d_hists(self):
+        out_list = []
+        for i, title in enumerate(titles):
+            plt.figure()
+            plt.hist(self.hists[i], bins=n_bins[i])
+            plt.title(titles[i])
+            plt.xlabel(xlabels[i])
+            plt.ylabel(ylabel)
+            plt.savefig(titles[i]+".png")
+            # out_list.append(plt.object) whatever code here
+            plt.close()
                 
 # -----------------------------------------------------------------------
 # Function Definitions
@@ -65,14 +101,14 @@ def pythia_sim(cmd_file, part_name=""):
         vectors              = event.all(selection)
         sequence             = cluster(vectors, R=0.4, p=-1, ep=True) #nts:Rval update
         jets                 = sequence.inclusive_jets()
-        unclustered_particles.append(sequence.unclustered_particles())
+#        unclustered_particles.append(sequence.unclustered_particles())
         event_data_package = event_hists()
         for jet in jets:
-            if jet.userinfo is not None: event_data_package.update (
-                    jet.userinfo[pid], jet.eta, jet.phi, jet.mass, jet.pt]
+            if jet.userinfo is not None: event_data_package.update(
+                    jet.userinfo[pid], jet.eta, jet.phi, jet.mass, jet.pt
             )
             else: event_data_package.update (
-                    -1, jet.eta, jet.phi, jet.mass, jet.pt
+                    5, jet.eta, jet.phi, jet.mass, jet.pt
             )# Error until pdgid bug is fixed
         events_data.append(event_data_package)
     return events_data
@@ -149,7 +185,9 @@ def structure_data_into_care_package(particle_data_list):
     return care_package
 
 def make_plots(data_pak):
-    pass
+    #Aggregate_pak = event_hists()
+    for event_pak in data_pak:
+        event_pak.save_1d_hists()
 # -----------------------------------------------------------------------
 # Main process 
 # -----------------------------------------------------------------------
@@ -157,8 +195,9 @@ while np.load(open("control", "rb")):
     # ttbar_tensor has indices of event, followed by eta, followed by phi.
     # The value of the h_tensor is the associated transverse energy.
     higgs_ww_data    = pythia_sim('higgsww.cmnd', "higgsWW")
-    higgs_zz_data    = pythia_sim('higgszz.cmnd', 'higgsZZ')
     make_plots(higgs_ww_data)
+    higgs_zz_data    = pythia_sim('higgszz.cmnd', 'higgsZZ')
+    make_plots(higgs_zz_data)
     care_package  = structure_data_into_care_package([ttbar_data, zz_data])
     ship(care_package)
 print("Data Generation Halted")
