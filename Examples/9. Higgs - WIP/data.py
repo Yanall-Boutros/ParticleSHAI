@@ -62,9 +62,8 @@ class event_hists(object):
         for i, title in enumerate(titles): self.hists[i] = []
 
     def update(self, pdgid, eta, mass, phi, pt):
-        bjetid = 5
         update_vals = [eta, mass, phi, pt]
-        if pdgid == bjetid:
+        if pdgid == "bjet":
             for i, title in enumerate(titles[:4]): 
                 self.hists[i].append(update_vals.pop(0))
         else:
@@ -88,6 +87,30 @@ class event_hists(object):
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
+def print_jet_infos(jet):
+    for const in jet.constituents(): print(const.userinfo['pdgid'])
+def print_jet_parents(jet):
+    if jet.userinfo is None:
+        print_jet_parents(jet.parents[1])
+        print_jet_parents(jet.parents[0])
+    else:
+        print(jet.userinfo['pdgid'])
+def print_nonetype_consts(jet):
+    if len(jet.constituents_array()) == 1 and jet.userinfo is not None:
+        print(jet.userinfo['pdgid'])
+        return
+    for const in jet.constituents():
+        if const.userinfo is None:
+            print_nonetype_consts(const)
+            return
+def is_bjet(jet):
+    for const in jet.constituents():
+        if const.userinfo is None:
+            is_bjet(const)
+        else:
+            if const.userinfo['pdgid'] == 5:
+                print(5)
+
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
     # is the name of the particle we're simulating decays from.
@@ -101,15 +124,12 @@ def pythia_sim(cmd_file, part_name=""):
         vectors              = event.all(selection)
         sequence             = cluster(vectors, R=0.4, p=-1, ep=True) #nts:Rval update
         jets                 = sequence.inclusive_jets()
-#        unclustered_particles.append(sequence.unclustered_particles())
+#       unclustered_particles.append(sequence.unclustered_particles())
         event_data_package = event_hists()
         for jet in jets:
-            if jet.userinfo is not None: event_data_package.update(
-                    jet.userinfo[pid], jet.eta, jet.phi, jet.mass, jet.pt
+            event_data_package.update (
+                    is_bjet(jet), jet.eta, jet.phi, jet.mass, jet.pt
             )
-            else: event_data_package.update (
-                    5, jet.eta, jet.phi, jet.mass, jet.pt
-            )# Error until pdgid bug is fixed
         events_data.append(event_data_package)
     return events_data
 
