@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # ====================================================================== 
 # Import Statements
 # ====================================================================== 
@@ -9,6 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pyjet import cluster
 from matplotlib.colors import ListedColormap
+from skhep.math.vectors import *
 import pickle as pic
 import os.path
 # -----------------------------------------------------------------------
@@ -43,15 +45,15 @@ xlabels = [
         ]
 ylabel = "Counts in Event"
 n_bins = [
-            100,
-            100,
-            100,
-            100,
-            100,
-            100,
-            100,
-            100,
-            100
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
         ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
@@ -61,9 +63,9 @@ class event_hists(object):
         self.hists = {}
         for i, title in enumerate(titles): self.hists[i] = []
 
-    def update(self, pdgid, eta, mass, phi, pt):
+    def update(self, isbjet, eta, mass, phi, pt):
         update_vals = [eta, mass, phi, pt]
-        if pdgid == "bjet":
+        if isbjet:
             for i, title in enumerate(titles[:4]): 
                 self.hists[i].append(update_vals.pop(0))
         else:
@@ -89,10 +91,12 @@ class event_hists(object):
 # -----------------------------------------------------------------------
 def print_jet_infos(jet):
     for const in jet.constituents(): print(const.userinfo['pdgid'])
+
 def print_jet_parents(jet):
     if jet.userinfo is None:
-        print_jet_parents(jet.parents[1])
-        print_jet_parents(jet.parents[0])
+        for parent in jet.parents.reverse():
+            print_jet_parents(jet.parents[1])
+            print_jet_parents(jet.parents[0])
     else:
         print(jet.userinfo['pdgid'])
 def print_nonetype_consts(jet):
@@ -102,14 +106,42 @@ def print_nonetype_consts(jet):
     for const in jet.constituents():
         if const.userinfo is None:
             print_nonetype_consts(const)
-            return
-def is_bjet(jet):
-    for const in jet.constituents():
-        if const.userinfo is None:
-            is_bjet(const)
-        else:
-            if const.userinfo['pdgid'] == 5:
-                print(5)
+            return 
+
+
+def print_event_pdgids(event):
+    count = 0
+    hcount = 0
+    for e in event:
+        if np.abs(e['pdgid']) == 5: 
+            count += 1
+            print(e['pdgid'], ": ", e)
+        if np.abs(e['pdgid']) == 25:
+            hcount += 1
+            print(e['pdgid'], ": ", e)
+    print("Number of bjets: ", count)
+    print("Number of higgs: ", hcount)
+
+def update(bquarks, particle):
+    # if the particle has the pid of a b quark and its status is such that 
+    # it is done with its iterative process, append that particle to the 
+    # list of bquarks
+    if abs(particle.pid) == 5 and particle.status == 71:
+        bquarks.append(particle)
+
+def is_bjet(jet, bquarks, otherjets, bjets):  
+    jet_lv = LorentzVector(jet.px, jet.py, jet.pz, jet.e)
+    matched_bjet = False
+    for bquark in bquarks:
+        bquark_lv = LorentzVector(bquark.px, bquark.py, bquark.pz, bquark.e)
+        if (jet_lv.deltar(bquark_lv) < 0.4):
+            print('found a b-jet match!!')
+            print('   jet is ', jet.eta, jet.phi)
+            print('   bqk is ', bquark.eta, bquark.phi)
+            bjets.append(jet)
+            return True
+    otherjets.append(jet)
+    return False
 
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
@@ -118,17 +150,25 @@ def pythia_sim(cmd_file, part_name=""):
     # Returns an array of 2D histograms, mapping eta, phi, with transverse
     # energy.
     pythia      = Pythia(cmd_file, random_state=1)
-    selection   = ((STATUS == 1) & ~HAS_END_VERTEX)
     events_data = []
+    bquarks     = []
+    bjets                    = []
+    otherjets                = []
     for event in pythia(events=num_events):
-        vectors              = event.all(selection)
-        sequence             = cluster(vectors, R=0.4, p=-1, ep=True) #nts:Rval update
-        jets                 = sequence.inclusive_jets()
-#       unclustered_particles.append(sequence.unclustered_particles())
-        event_data_package = event_hists()
+        final_state_selection    = ((STATUS == 1) & ~HAS_END_VERTEX &
+                                 (ABS_PDG_ID != 12) &
+                                 (ABS_PDG_ID != 14) &
+                                 (ABS_PDG_ID != 16))
+        particles                = event.all(return_hepmc=True)
+        for particle in particles: update(bquarks, particle)
+        jet_inputs               = event.all(final_state_selection)
+        jet_sequence             = cluster(jet_inputs, ep=True, R=0.4, p=-1)
+        jets                     = jet_sequence.inclusive_jets(ptmin=20)
+        event_data_package       = event_hists()
         for jet in jets:
             event_data_package.update (
-                    is_bjet(jet), jet.eta, jet.phi, jet.mass, jet.pt
+                    is_bjet(jet, bquarks, otherjets, bjets),jet.eta, jet.phi,
+                    jet.mass, jet.pt
             )
         events_data.append(event_data_package)
     return events_data
