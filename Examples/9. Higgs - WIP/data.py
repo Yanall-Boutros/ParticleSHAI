@@ -82,7 +82,7 @@ class event_hists(object):
             plt.title(titles[i])
             plt.xlabel(xlabels[i])
             plt.ylabel(ylabel)
-            plt.savefig(titles[i]+".png")
+            plt.savefig("hists/"+titles[i]+".png")
             # out_list.append(plt.object) whatever code here
             plt.close()
                 
