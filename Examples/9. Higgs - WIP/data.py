@@ -18,8 +18,8 @@ import os.path
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
 bjet_id               = 5
-num_events            = 10 # Number of events to process per parent
-test                  = 1  # particle. Number of test events to reserve
+num_events            = 1000 # Number of events to process per parent
+test                  = 10  # particle. Number of test events to reserve
 discarded_data        = [] # Archive of any particles discarded
 titles = [
             "Histogram of bjet eta",
@@ -89,39 +89,6 @@ class event_hists(object):
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
-def print_jet_infos(jet):
-    for const in jet.constituents(): print(const.userinfo['pdgid'])
-
-def print_jet_parents(jet):
-    if jet.userinfo is None:
-        for parent in jet.parents.reverse():
-            print_jet_parents(jet.parents[1])
-            print_jet_parents(jet.parents[0])
-    else:
-        print(jet.userinfo['pdgid'])
-def print_nonetype_consts(jet):
-    if len(jet.constituents_array()) == 1 and jet.userinfo is not None:
-        print(jet.userinfo['pdgid'])
-        return
-    for const in jet.constituents():
-        if const.userinfo is None:
-            print_nonetype_consts(const)
-            return 
-
-
-def print_event_pdgids(event):
-    count = 0
-    hcount = 0
-    for e in event:
-        if np.abs(e['pdgid']) == 5: 
-            count += 1
-            print(e['pdgid'], ": ", e)
-        if np.abs(e['pdgid']) == 25:
-            hcount += 1
-            print(e['pdgid'], ": ", e)
-    print("Number of bjets: ", count)
-    print("Number of higgs: ", hcount)
-
 def update(bquarks, particle):
     # if the particle has the pid of a b quark and its status is such that 
     # it is done with its iterative process, append that particle to the 
@@ -129,19 +96,13 @@ def update(bquarks, particle):
     if abs(particle.pid) == 5 and particle.status == 71:
         bquarks.append(particle)
 
-def is_bjet(jet, bquarks, otherjets, bjets):  
+def update_if_bjet(jet, bquarks, events_hists):  
     jet_lv = LorentzVector(jet.px, jet.py, jet.pz, jet.e)
-    matched_bjet = False
     for bquark in bquarks:
         bquark_lv = LorentzVector(bquark.px, bquark.py, bquark.pz, bquark.e)
         if (jet_lv.deltar(bquark_lv) < 0.4):
-            print('found a b-jet match!!')
-            print('   jet is ', jet.eta, jet.phi)
-            print('   bqk is ', bquark.eta, bquark.phi)
-            bjets.append(jet)
-            return True
-    otherjets.append(jet)
-    return False
+              events_hists.update(True,  jet.eta, jet.mass, jet.phi, jet.pt)
+        else: events_hists.update(False, jet.eta, jet.mass, jet.phi, jet.pt)
 
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
@@ -152,10 +113,11 @@ def pythia_sim(cmd_file, part_name=""):
     pythia      = Pythia(cmd_file, random_state=1)
     events_data = []
     bquarks     = []
-    bjets                    = []
-    otherjets                = []
+    bjets       = []
+    otherjets   = []
     for event in pythia(events=num_events):
-        final_state_selection    = ((STATUS == 1) & ~HAS_END_VERTEX &
+        final_state_selection    = ((STATUS == 1)   & 
+                                 ~HAS_END_VERTEX    &
                                  (ABS_PDG_ID != 12) &
                                  (ABS_PDG_ID != 14) &
                                  (ABS_PDG_ID != 16))
@@ -165,11 +127,7 @@ def pythia_sim(cmd_file, part_name=""):
         jet_sequence             = cluster(jet_inputs, ep=True, R=0.4, p=-1)
         jets                     = jet_sequence.inclusive_jets(ptmin=20)
         event_data_package       = event_hists()
-        for jet in jets:
-            event_data_package.update (
-                    is_bjet(jet, bquarks, otherjets, bjets),jet.eta, jet.phi,
-                    jet.mass, jet.pt
-            )
+        for jet in jets          : update_if_bjet(jet, bquarks, event_data_package)
         events_data.append(event_data_package)
     return events_data
 
