@@ -19,7 +19,7 @@ import os.path
 pid                   = 'pdgid'
 bjet_id               = 5
 num_events            = 1000 # Number of events to process per parent
-test                  = 10  # particle. Number of test events to reserve
+test                  = 100  # particle. Number of test events to reserve
 discarded_data        = [] # Archive of any particles discarded
 titles = [
             "Histogram of bjet eta",
@@ -45,15 +45,15 @@ xlabels = [
         ]
 ylabel = "Counts in Event"
 n_bins = [
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
         ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
@@ -64,7 +64,7 @@ class event_hists(object):
         for i, title in enumerate(titles): self.hists[i] = []
 
     def update(self, isbjet, eta, mass, phi, pt):
-        update_vals = [eta, mass, phi, pt]
+        update_vals = [eta, phi, mass, pt]
         if isbjet:
             for i, title in enumerate(titles[:4]): 
                 self.hists[i].append(update_vals.pop(0))
