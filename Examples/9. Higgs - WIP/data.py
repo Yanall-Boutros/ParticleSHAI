@@ -110,11 +110,11 @@ def pythia_sim(cmd_file, part_name=""):
     # Only necessary for titling graphs.
     # Returns an array of 2D histograms, mapping eta, phi, with transverse
     # energy.
-    pythia      = Pythia(cmd_file, random_state=1)
-    events_data = []
-    bquarks     = []
-    bjets       = []
-    otherjets   = []
+    pythia                   = Pythia(cmd_file, random_state=1)
+    events_data_package      = event_hists()
+    bquarks                  = []
+    bjets                    = []
+    otherjets                = []
     for event in pythia(events=num_events):
         final_state_selection    = ((STATUS == 1)   & 
                                  ~HAS_END_VERTEX    &
@@ -126,10 +126,8 @@ def pythia_sim(cmd_file, part_name=""):
         jet_inputs               = event.all(final_state_selection)
         jet_sequence             = cluster(jet_inputs, ep=True, R=0.4, p=-1)
         jets                     = jet_sequence.inclusive_jets(ptmin=20)
-        event_data_package       = event_hists()
-        for jet in jets          : update_if_bjet(jet, bquarks, event_data_package)
-        events_data.append(event_data_package)
-    return events_data
+        for jet in jets          : update_if_bjet(jet, bquarks, events_data_package)
+    return events_data_package
 
 def shuffle_and_stich(A, B, X, Y):
     # A and B are both tensors which map to X and Y respectively
@@ -195,27 +193,23 @@ def structure_data_into_care_package(particle_data_list):
     
     # T_i is the training data / the input tensor
     # T_o is the expected value (closer to 1 is ttbar, closer to 0 is zz
-    T_i, T_o = shuffle_and_stich(ttbar_data, zz_data,
-                                 ttbar_mapping, zz_mapping)
+    T_i, T_o       = shuffle_and_stich(ttbar_data, zz_data,
+                                       ttbar_mapping, zz_mapping)
     Test_i, Test_o = shuffle_and_stich(ttbar_training, zz_training,
                                        ttbar_training_map, zz_training_map)
     care_package = np.array([T_i, T_o, Test_i, Test_o], dtype=object)
     return care_package
 
-def make_plots(data_pak):
-    #Aggregate_pak = event_hists()
-    for event_pak in data_pak:
-        event_pak.save_1d_hists()
+def make_plots(data_pak): data_pak.save_1d_hists()
 # -----------------------------------------------------------------------
 # Main process 
 # -----------------------------------------------------------------------
 while np.load(open("control", "rb")):
     # ttbar_tensor has indices of event, followed by eta, followed by phi.
     # The value of the h_tensor is the associated transverse energy.
-    higgs_ww_data    = pythia_sim('higgsww.cmnd', "higgsWW")
-    make_plots(higgs_ww_data)
-    higgs_zz_data    = pythia_sim('higgszz.cmnd', 'higgsZZ')
-    make_plots(higgs_zz_data)
-    care_package  = structure_data_into_care_package([ttbar_data, zz_data])
-    ship(care_package)
+    higgs_ww_data = pythia_sim('higgsww.cmnd', "higgsWW"); make_plots(higgs_ww_data)
+    higgs_zz_data = pythia_sim('higgszz.cmnd', 'higgsZZ'); make_plots(higgs_zz_data)
+    break
+    #care_package  = structure_data_into_care_package([ttbar_data, zz_data])
+    #ship(care_package)
 print("Data Generation Halted")
