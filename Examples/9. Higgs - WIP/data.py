@@ -52,6 +52,16 @@ n_bins = [
             100,
             100,
         ]
+ranges = [
+            (-4, 4),
+            (-np.pi, np.pi),
+            (0, 40),
+            (0, 200),
+            (-6, 6),
+            (-np.pi, np.pi),
+            (0, 40),
+            (0, 1600)
+        ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
     # mass of the jet, maintaing those two sets for jets of 
@@ -68,7 +78,7 @@ class event_hists(object):
                 self.hists[i].append(update_vals.pop(0))
         else:
             dev = 4
-            for i, title in enumerate(titles[4:-1]):
+            for i, title in enumerate(titles[4:]):
                 self.hists[i+dev].append(update_vals.pop(0))
         self.hists[len(titles) - 1].append(len(self.hists[0]))
         
