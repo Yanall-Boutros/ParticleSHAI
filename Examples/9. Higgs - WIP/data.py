@@ -30,7 +30,6 @@ titles = [
             "Histogram of nonbjet phi",
             "Histogram of nonbjet mass",
             "Histogram of nonbjet pt",
-            "Histogram of number of b jets",
         ]
 xlabels = [
             "Eta ($\eta$)",
@@ -41,7 +40,6 @@ xlabels = [
             "Phi ($\phi$)",
             "Mass ($GeV$)",
             "Pt  ($jet.pt$)",
-            "Number of b jets"
         ]
 ylabel = "Counts in Event"
 n_bins = [
@@ -53,15 +51,15 @@ n_bins = [
             100,
             100,
             100,
-            100
         ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
     # mass of the jet, maintaing those two sets for jets of 
     # pdgid = 5 AKA  'bjet', and non bjets.
-    def __init__(self):
+    def __init__(self, folder_dest=""):
         self.hists = {}
         for i, title in enumerate(titles): self.hists[i] = []
+        self.fdest = folder_dest
 
     def update(self, isbjet, eta, mass, phi, pt):
         update_vals = [eta, phi, mass, pt]
@@ -82,7 +80,7 @@ class event_hists(object):
             plt.title(titles[i])
             plt.xlabel(xlabels[i])
             plt.ylabel(ylabel)
-            plt.savefig("hists/"+titles[i]+".png")
+            plt.savefig("hists/"+self.fdest+"/"+titles[i]+".png")
             # out_list.append(plt.object) whatever code here
             plt.close()
                 
@@ -96,13 +94,17 @@ def update(bquarks, particle):
     if abs(particle.pid) == 5 and particle.status == 71:
         bquarks.append(particle)
 
-def update_if_bjet(jet, bquarks, events_hists):  
+def update_if_bjet(jet, bquarks, events_hists, bjets, otherjets):  
     jet_lv = LorentzVector(jet.px, jet.py, jet.pz, jet.e)
     for bquark in bquarks:
         bquark_lv = LorentzVector(bquark.px, bquark.py, bquark.pz, bquark.e)
         if (jet_lv.deltar(bquark_lv) < 0.4):
               events_hists.update(True,  jet.eta, jet.mass, jet.phi, jet.pt)
-        else: events_hists.update(False, jet.eta, jet.mass, jet.phi, jet.pt)
+              bjets.append(jet)
+
+        else: 
+            events_hists.update(False, jet.eta, jet.mass, jet.phi, jet.pt)
+            otherjets.append(jet)
 
 def pythia_sim(cmd_file, part_name=""):
     # The main simulation. Takes a cmd_file as input. part_name 
@@ -111,11 +113,15 @@ def pythia_sim(cmd_file, part_name=""):
     # Returns an array of 2D histograms, mapping eta, phi, with transverse
     # energy.
     pythia                   = Pythia(cmd_file, random_state=1)
-    events_data_package      = event_hists()
-    bquarks                  = []
-    bjets                    = []
-    otherjets                = []
+    if part_name == "higgsWW": events_data_package = event_hists("ff2HffTww")
+    else                     : events_data_package = event_hists("ff2HffTzz")
+    bquarksAtEvent           = []
+    bjetsAtEvent             = []
+    otherJetsAtEvent         = []
     for event in pythia(events=num_events):
+        bjets                    = []
+        bquarks                  = []
+        otherjets                = []
         final_state_selection    = ((STATUS == 1)   & 
                                  ~HAS_END_VERTEX    &
                                  (ABS_PDG_ID != 12) &
@@ -126,8 +132,12 @@ def pythia_sim(cmd_file, part_name=""):
         jet_inputs               = event.all(final_state_selection)
         jet_sequence             = cluster(jet_inputs, ep=True, R=0.4, p=-1)
         jets                     = jet_sequence.inclusive_jets(ptmin=20)
-        for jet in jets          : update_if_bjet(jet, bquarks, events_data_package)
-    return events_data_package
+        for jet in jets          : update_if_bjet(jet, bquarks, events_data_package,
+                                                  bjets, otherjets)
+        bquarksAtEvent.append(bquarks)
+        bjetsAtEvent.append(bjets)
+        otherJetsAtEvent.append(otherjets)
+    return events_data_package, bquarksAtEvent, bjetsAtEvent, otherJetsAtEvent
 
 def shuffle_and_stich(A, B, X, Y):
     # A and B are both tensors which map to X and Y respectively
@@ -200,15 +210,50 @@ def structure_data_into_care_package(particle_data_list):
     care_package = np.array([T_i, T_o, Test_i, Test_o], dtype=object)
     return care_package
 
-def make_plots(data_pak): data_pak.save_1d_hists()
+def make_plots(data_pak):
+    data_pak.save_1d_hists()
+
+def plot_num_part_type(list_of_parts, process_type):
+    titles = [
+                "Number of bQuarks in Event",
+                "Number of bjets in Event",
+                "Number of other jets in Event"
+            ]
+    nbins   = [
+                100,
+                100,
+                100
+            ]
+    xlabel = "Counts in Event"
+    ylabel = "In $N$ Events"
+    if process_type == "ww": fdest = "ff2HffTww"
+    else                   : fdest = "ff2HffTzz"
+    # list contains list of bquarks then bjets then otherjets
+    for i, part in enumerate(list_of_parts):
+        for j in range(len(part)): part[j] = len(part[j])
+        plt.figure()
+        plt.hist(part, bins=nbins[i])
+        plt.title(titles[i])
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.savefig("hists/"+fdest+"/"+titles[i]+".png")
+        plt.close()
+
 # -----------------------------------------------------------------------
 # Main process 
 # -----------------------------------------------------------------------
 while np.load(open("control", "rb")):
     # ttbar_tensor has indices of event, followed by eta, followed by phi.
     # The value of the h_tensor is the associated transverse energy.
-    higgs_ww_data = pythia_sim('higgsww.cmnd', "higgsWW"); make_plots(higgs_ww_data)
-    higgs_zz_data = pythia_sim('higgszz.cmnd', 'higgsZZ'); make_plots(higgs_zz_data)
+    higgs_ww_data, wwbquarks, wwbjets, wwotherjets = pythia_sim('higgsww.cmnd',
+                                                                     "higgsWW")
+    make_plots(higgs_ww_data)
+    plot_num_part_type([wwbquarks, wwbjets, wwotherjets], "ww")
+
+    higgs_zz_data, zzbquarks, zzbjets, zzotherjets = pythia_sim('higgszz.cmnd',
+                                                                     'higgsZZ')
+    make_plots(higgs_zz_data)
+    plot_num_part_type([zzbquarks, zzbjets, zzotherjets], "zz")
     break
     #care_package  = structure_data_into_care_package([ttbar_data, zz_data])
     #ship(care_package)
