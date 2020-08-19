@@ -18,7 +18,7 @@ import os.path
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
 bjet_id               = 5
-num_events            = 1000 # Number of events to process per parent
+num_events            = 100 # Number of events to process per parent
 test                  = 100  # particle. Number of test events to reserve
 discarded_data        = [] # Archive of any particles discarded
 titles = [
@@ -62,6 +62,17 @@ ranges = [
             (0, 40),
             (0, 1600)
         ]
+
+ylim = [
+        (0, 55),
+        (0, 30),
+        (0, 150),
+        (0, 140),
+        (0, 170),
+        (0, 140),
+        (0, 800),
+        (0, 2000),
+        ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
     # mass of the jet, maintaing those two sets for jets of 
@@ -90,19 +101,64 @@ class event_hists(object):
             plt.title(titles[i])
             plt.xlabel(xlabels[i])
             plt.ylabel(ylabel)
+            plt.ylim(ylim[i][0], ylim[i][1])
             plt.savefig("hists/"+self.fdest+"/"+titles[i]+".png")
             # out_list.append(plt.object) whatever code here
             plt.close()
                 
+class higgs_hists(object):
+    # Like event hists, but designed only for higgs. The two classes should
+    # be generalized better, inheriting from a mutual parent class
+    def __init__(self, folder_dest=""):
+        self.hists = {}
+        self.titles = [
+                    "Higgs Eta",
+                    "Higgs Phi",
+                    "Higgs Mass",
+                    "Higgs Pt"
+            ]
+        self.nbins = [
+                250,
+                250,
+                250,
+                250
+            ]
+        self.nranges = [
+                (0, 125),
+                (0, 75),
+                (0, 12500),
+                (0, 7200)
+            ]
+        for i, title in enumerate(self.titles): self.hists[i] = []
+        self.fdest = folder_dest
+    def update(self, eta, phi, mass, pt):
+        for i, title in enumerate(self.titles):
+            self.hists[i].append([eta, phi, mass, pt][i])
+
+    def save_1d_hists(self):
+        out_list = []
+        for i,title in enumerate(self.titles):
+            plt.figure()
+            plt.hist(self.hists[i], bins=self.nbins[i])
+            plt.title(self.titles[i])
+            plt.xlabel(xlabels[i])
+            plt.ylabel(ylabel)
+            plt.ylim(self.nranges[i][0], self.nranges[i][1])
+            plt.savefig("hists/"+self.fdest+"/"+titles[i]+".png")
+            plt.close()
+
 # -----------------------------------------------------------------------
 # Function Definitions
 # -----------------------------------------------------------------------
-def update(bquarks, particle):
+def update(bquarks, higgs, particle):
     # if the particle has the pid of a b quark and its status is such that 
     # it is done with its iterative process, append that particle to the 
     # list of bquarks
     if abs(particle.pid) == 5 and particle.status == 71:
         bquarks.append(particle)
+    if particle.status == 62:
+        higgs.update(particle.eta, particle.phi, particle.mass, particle.pt)
+
 
 def update_if_bjet(jet, bquarks, events_hists, bjets, otherjets):  
     jet_lv = LorentzVector(jet.px, jet.py, jet.pz, jet.e)
@@ -123,8 +179,12 @@ def pythia_sim(cmd_file, part_name=""):
     # Returns an array of 2D histograms, mapping eta, phi, with transverse
     # energy.
     pythia                   = Pythia(cmd_file, random_state=1)
-    if part_name == "higgsWW": events_data_package = event_hists("ff2HffTww")
-    else                     : events_data_package = event_hists("ff2HffTzz")
+    if part_name == "higgsWW":
+        events_data_package  = event_hists("ff2HffTww")
+        higgs_data_package   = higgs_hists("higgsww")
+    else:
+        events_data_package  = event_hists("ff2HffTzz")
+        higgs_data_package   = higgs_hists("higgszz")
     bquarksAtEvent           = []
     bjetsAtEvent             = []
     otherJetsAtEvent         = []
@@ -138,7 +198,7 @@ def pythia_sim(cmd_file, part_name=""):
                                  (ABS_PDG_ID != 14) &
                                  (ABS_PDG_ID != 16))
         particles                = event.all(return_hepmc=True)
-        for particle in particles: update(bquarks, particle)
+        for particle in particles: update(bquarks, higgs_data_package, particle)
         jet_inputs               = event.all(final_state_selection)
         jet_sequence             = cluster(jet_inputs, ep=True, R=0.4, p=-1)
         jets                     = jet_sequence.inclusive_jets(ptmin=20)
@@ -147,6 +207,7 @@ def pythia_sim(cmd_file, part_name=""):
         bquarksAtEvent.append(bquarks)
         bjetsAtEvent.append(bjets)
         otherJetsAtEvent.append(otherjets)
+    higgs_data_package.save_1d_hists()
     return events_data_package, bquarksAtEvent, bjetsAtEvent, otherJetsAtEvent
 
 def shuffle_and_stich(A, B, X, Y):
