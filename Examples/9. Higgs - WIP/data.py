@@ -11,6 +11,7 @@ import numpy as np
 from pyjet import cluster
 from matplotlib.colors import ListedColormap
 from skhep.math.vectors import *
+import itertools
 import pickle as pic
 import os.path
 # -----------------------------------------------------------------------
@@ -18,9 +19,11 @@ import os.path
 # -----------------------------------------------------------------------
 pid                   = 'pdgid'
 bjet_id               = 5
-num_events            = 100 # Number of events to process per parent
+num_events            = 1000 # Number of events to process per parent
 test                  = 100  # particle. Number of test events to reserve
 discarded_data        = [] # Archive of any particles discarded
+higgs_dat             = [] # Should restructure classes to avoid needing to mmake
+                           # a global variable but this is quicker.
 titles = [
             "Histogram of bjet eta",
             "Histogram of bjet phi",
@@ -117,20 +120,25 @@ class higgs_hists(object):
                     "Higgs Mass",
                     "Higgs Pt"
             ]
-        self.nbins = [
-                250,
-                250,
-                250,
-                250
-            ]
         self.nranges = [
                 (0, 125),
                 (0, 75),
                 (0, 12500),
                 (0, 7200)
             ]
+        self.nbins = [
+                   250,
+                   250,
+                   250,
+                   250,
+                   250,
+                   250,
+                   250,
+                   250
+                ]
         for i, title in enumerate(self.titles): self.hists[i] = []
         self.fdest = folder_dest
+
     def update(self, eta, phi, mass, pt):
         for i, title in enumerate(self.titles):
             self.hists[i].append([eta, phi, mass, pt][i])
@@ -158,7 +166,6 @@ def update(bquarks, higgs, particle):
         bquarks.append(particle)
     if particle.status == 62:
         higgs.update(particle.eta, particle.phi, particle.mass, particle.pt)
-
 
 def update_if_bjet(jet, bquarks, events_hists, bjets, otherjets):  
     jet_lv = LorentzVector(jet.px, jet.py, jet.pz, jet.e)
@@ -208,6 +215,7 @@ def pythia_sim(cmd_file, part_name=""):
         bjetsAtEvent.append(bjets)
         otherJetsAtEvent.append(otherjets)
     higgs_data_package.save_1d_hists()
+    higgs_dat.append(higgs_data_package)
     return events_data_package, bquarksAtEvent, bjetsAtEvent, otherJetsAtEvent
 
 def shuffle_and_stich(A, B, X, Y):
@@ -301,6 +309,7 @@ def plot_num_part_type(list_of_parts, process_type):
     else                   : fdest = "ff2HffTzz"
     # list contains list of bquarks then bjets then otherjets
     for i, part in enumerate(list_of_parts):
+        hist_data = []
         for j in range(len(part)): part[j] = len(part[j])
         plt.figure()
         plt.hist(part, bins=nbins[i])
@@ -313,15 +322,77 @@ def plot_num_part_type(list_of_parts, process_type):
 def plot_together(hwwdata, hzzdata):
     for i, title in enumerate(titles):
         plt.figure()
-        plt.hist(hwwdata.hists[i], alpha=0.5, label="Events from ww")
-        plt.hist(hzzdata.hists[i], alpha=0.5, label="Events from zz")
-        plt.legend(loc=1)
+        nbins = n_bins[i]
+        plt.hist(hwwdata.hists[i], alpha=0.75, label="Events from ww", bins=nbins)
+        plt.hist(hzzdata.hists[i], alpha=0.75, label="Events from zz", bins=nbins)
+        plt.legend(loc=4)
         plt.title(title)
         plt.xlabel(xlabels[i])
         plt.ylabel(ylabel)
-        plt.savefig("hists/together"+"/"+titles[i]+".png")
+        plt.savefig("hists/together/"+title+".png")
         plt.close()
         
+def plot_higgs_together(hfww, hfzz):
+    for i,title in enumerate(hfww.titles):
+        plt.figure()
+        nbins = hfww.nbins[i]
+        plt.hist(hfww.hists[i], alpha=0.75, label="Higgs from ww", bins=nbins)
+        plt.hist(hfzz.hists[i], alpha=0.75, label="Higgs from zz", bins=nbins)
+        plt.legend(loc=4)
+        plt.title(title)
+        plt.xlabel(xlabels[i])
+        plt.ylabel(ylabel)
+        plt.savefig("hists/higgstogether/"+title+".png")
+        plt.close()
+
+def momentum_sqrd(fvec):
+    m = 0
+    for p in fvec[:3]: m += p**2
+    return m
+def calc_inv_mass(fvec):
+    # indices 0-3 are momentum, last is energy
+    return (fvec[3]**2 + momentum_sqrd(fvec))**0.5
+
+def invmass(jet1, jet2):
+    # first, get the jets into fourvecs
+    j1 = np.array([jet1.px, jet1.py, jet1.pz, jet1.e])
+    j2 = np.array([jet2.px, jet2.py, jet2.pz, jet2.e])
+    fvec = np.add(j1, j2)
+    return calc_inv_mass(fvec)
+
+def most_rubenesque(wwjets, zzjets):
+    ruben_likes  = [-1, -1]
+    wruben_likes = []
+    for wevent in wwjets:
+        wmax = -1
+        for jet1, jet2 in list(itertools.combinations(wevent, 2)):
+            if (result := invmass(jet1, jet2)) > wmax:
+                wmax = result
+                ruben_likes[0] = jet1
+                ruben_likes[1] = jet2
+        wruben_likes.append(np.array([ruben_likes[0], ruben_likes[1], wmax]))
+    zruben_likes = []
+    for zevent in zzjets:
+        zmax = -1
+        for jet1, jet2 in list(itertools.combinations(zevent, 2)):
+            if (result := invmass(jet1, jet2)) > zmax:
+                zmax = result
+                ruben_likes[0] = jet1
+                ruben_likes[1] = jet2
+        zruben_likes.append(np.array([ruben_likes[0], ruben_likes[1], zmax]))
+    return np.array([wruben_likes, zruben_likes])
+
+def draw_ruben(wf, zf):
+    wmasses = wf[:,2]
+    zmasses = zf[:,2]
+    plt.figure()
+    plt.hist(wmasses, label="Non b invariant masses from ww", bins=250, alpha=0.75)
+    plt.hist(zmasses, label="Non b invariant masses from zz", bins=250, alpha=0.75)
+    plt.xlabel("Invariant Mass $GeV$")
+    plt.ylabel("Counts per event")
+    plt.legend(loc=1)
+    plt.title("Invariant Masses of Non-b jets")
+    plt.savefig("hists/rubentogether/invmass.png")
 # -----------------------------------------------------------------------
 # Main process 
 # -----------------------------------------------------------------------
@@ -331,14 +402,17 @@ while np.load(open("control", "rb")):
     higgs_ww_data, wwbquarks, wwbjets, wwotherjets = pythia_sim('higgsww.cmnd',
                                                                      "higgsWW")
     make_plots(higgs_ww_data)
-    plot_num_part_type([wwbquarks, wwbjets, wwotherjets], "ww")
+    plot_num_part_type([wwbquarks.copy(), wwbjets.copy(), wwotherjets.copy()], "ww")
 
     higgs_zz_data, zzbquarks, zzbjets, zzotherjets = pythia_sim('higgszz.cmnd',
                                                                      'higgsZZ')
     make_plots(higgs_zz_data)
-    plot_num_part_type([zzbquarks, zzbjets, zzotherjets], "zz")
+    plot_num_part_type([zzbquarks.copy(), zzbjets.copy(), zzotherjets.copy()], "zz")
 
     plot_together(higgs_ww_data, higgs_zz_data)
+    plot_higgs_together(*higgs_dat)
+    ww_nonB_fattest, zz_nonB_fattest = most_rubenesque(wwotherjets, zzotherjets)
+    draw_ruben(ww_nonB_fattest, zz_nonB_fattest)
     break
     #care_package  = structure_data_into_care_package([ttbar_data, zz_data])
     #ship(care_package)
