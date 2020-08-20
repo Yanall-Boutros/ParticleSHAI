@@ -64,14 +64,14 @@ ranges = [
         ]
 
 ylim = [
-        (0, 55),
-        (0, 30),
-        (0, 150),
-        (0, 140),
-        (0, 170),
-        (0, 140),
-        (0, 800),
-        (0, 2000),
+            (0, 55),
+            (0, 30),
+            (0, 150),
+            (0, 140),
+            (0, 170),
+            (0, 140),
+            (0, 800),
+            (0, 2000),
         ]
 class event_hists(object):
     # A data structure which contains the Eta, Phi, pt, and invariant
@@ -310,6 +310,18 @@ def plot_num_part_type(list_of_parts, process_type):
         plt.savefig("hists/"+fdest+"/"+titles[i]+".png")
         plt.close()
 
+def plot_together(hwwdata, hzzdata):
+    for i, title in enumerate(titles):
+        plt.figure()
+        plt.hist(hwwdata.hists[i], alpha=0.5, label="Events from ww")
+        plt.hist(hzzdata.hists[i], alpha=0.5, label="Events from zz")
+        plt.legend(loc=1)
+        plt.title(title)
+        plt.xlabel(xlabels[i])
+        plt.ylabel(ylabel)
+        plt.savefig("hists/together"+"/"+titles[i]+".png")
+        plt.close()
+        
 # -----------------------------------------------------------------------
 # Main process 
 # -----------------------------------------------------------------------
@@ -325,6 +337,8 @@ while np.load(open("control", "rb")):
                                                                      'higgsZZ')
     make_plots(higgs_zz_data)
     plot_num_part_type([zzbquarks, zzbjets, zzotherjets], "zz")
+
+    plot_together(higgs_ww_data, higgs_zz_data)
     break
     #care_package  = structure_data_into_care_package([ttbar_data, zz_data])
     #ship(care_package)
