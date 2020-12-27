@@ -1,4 +1,0 @@
-Many of the functions defined and executed in the Examples folder
-have been isolatd into separate python scripts so that they can
-be called independently and have their inputs / outputs chained
-together via piping.
